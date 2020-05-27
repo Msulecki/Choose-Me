@@ -1,20 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Chivo:wght@300;900&display=swap');
 
 $cir_size: 100px;
+$main_bg: hsl(200,8,10); 
 .app {
   position:fixed;
   top:0;
   left:0;
   bottom:0;
   right:0;
-  background-color: hsl(200,8,10);
+  background-color: $main_bg;
   overflow: hidden;
   font-family: 'Chivo', sans-serif;
 
   &__circle {
     position: relative;
     user-select: none;
-    color: hsl(200,8,10);
+    color: $main_bg;
     font-size: 7em;
     font-weight: 900;
     width: $cir_size;
@@ -33,7 +34,10 @@ $cir_size: 100px;
       width: calc(#{$cir_size+50});
       height: calc(#{$cir_size+50});
       border: 10px solid hsla(100,100,60,.7);
+      border-left: 10px solid transparent;
       border-radius: 50%;
+      background-clip: padding-box;
+      animation: cir_rotate 1.5s linear infinite;
     }
   }
 
@@ -54,4 +58,8 @@ $cir_size: 100px;
 @keyframes cir_pulse {
   50% {transform: translate(calc(#{$cir_size}/-2),calc(#{$cir_size}/-2)) scale(.9)}
   100% {transform: translate(calc(#{$cir_size}/-2),calc(#{$cir_size}/-2))}
+}
+
+@keyframes cir_rotate {
+  100%{transform: rotate(360deg);}
 }
