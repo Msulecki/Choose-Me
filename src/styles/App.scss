@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@300;900&display=swap');
+
+$cir_size: 100px;
+.app {
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  background-color: hsl(200,8,10);
+  overflow: hidden;
+  font-family: 'Chivo', sans-serif;
+
+  &__circle {
+    position: relative;
+    user-select: none;
+    color: hsl(200,8,10);
+    font-size: 7em;
+    font-weight: 900;
+    width: $cir_size;
+    height: $cir_size;
+    transform: translate(calc(#{$cir_size}/-2),calc(#{$cir_size}/-2));
+    background-image:radial-gradient(hsla(100,100,60,.7), hsla(150,100,60,.7));
+    border-radius: 50%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: cir_pulse 1s linear infinite;
+
+    &-border {
+      position: absolute;
+      width: calc(#{$cir_size+50});
+      height: calc(#{$cir_size+50});
+      border: 10px solid hsla(100,100,60,.7);
+      border-radius: 50%;
+    }
+  }
+
+  &__count {
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    user-select: none;
+  }
+}
+
+@keyframes cir_pulse {
+  50% {transform: translate(calc(#{$cir_size}/-2),calc(#{$cir_size}/-2)) scale(.9)}
+  100% {transform: translate(calc(#{$cir_size}/-2),calc(#{$cir_size}/-2))}
+}
