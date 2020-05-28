@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Chivo:wght@300;900&display=swap');
 
 $cir_size: 100px;
+$cir_winner_size: 300vh;
 $main_bg: hsl(200,8,10); 
 .app {
   position:fixed;
@@ -12,8 +13,19 @@ $main_bg: hsl(200,8,10);
   overflow: hidden;
   font-family: 'Chivo', sans-serif;
 
+  &__desktop {
+    width: 100%;
+    height: 100vh;
+    padding: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: hsl(0,0,96);
+    font-size: 1.4em;
+  }
+
   &__circle {
-    position: relative;
+    position: absolute;
     user-select: none;
     color: $main_bg;
     font-size: 7em;
@@ -23,21 +35,32 @@ $main_bg: hsl(200,8,10);
     transform: translate(calc(#{$cir_size}/-2),calc(#{$cir_size}/-2));
     background-image:radial-gradient(hsla(100,100,60,.7), hsla(150,100,60,.7));
     border-radius: 50%;
-    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     animation: cir_pulse 1s linear infinite;
 
+    &.winner {
+   //   animation: cir_winner 1.5s linear forwards;
+    }
+
     &-border {
-      position: absolute;
-      width: calc(#{$cir_size+50});
-      height: calc(#{$cir_size+50});
+   //   position: absolute;
+      width: calc(#{$cir_size+50px});
+      height: calc(#{$cir_size+50px});
+    //  transform: translate(calc(#{$cir_size}/-2),calc(#{$cir_size}/-2));
       border: 10px solid hsla(100,100,60,.7);
       border-left: 10px solid transparent;
       border-radius: 50%;
       background-clip: padding-box;
+      padding: calc(#{$cir_size/1.5});
       animation: cir_rotate 1.5s linear infinite;
+      &.winner {
+        animation: cir-border_winner 1.5s linear forwards;
+      }
+    }
+    &-number {
+      position: absolute;
     }
   }
 
@@ -62,4 +85,33 @@ $main_bg: hsl(200,8,10);
 
 @keyframes cir_rotate {
   100%{transform: rotate(360deg);}
+}
+
+@keyframes cir_winner {
+  80% {
+    width: $cir_winner_size;
+    height: $cir_winner_size;
+    transform: translate(calc(#{$cir_winner_size}/-2),calc(#{$cir_winner_size}/-2));
+    left: 50%;
+    top: 50%;
+    font-size: 24em;
+  }
+  100% {
+    width: $cir_winner_size;
+    height: $cir_winner_size;
+    transform: translate(calc(#{$cir_winner_size}/-2),calc(#{$cir_winner_size}/-2));
+    left: 50%;
+    top: 50%;
+    font-size: 24em;
+  }
+}
+
+@keyframes cir-border_winner {
+  10%{
+   // opacity: 0;
+  }
+  100% {
+  //  opacity: 0;
+  border-width: 250vh;
+  }
 }
