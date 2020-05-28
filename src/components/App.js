@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Circles from './Circles';
 import '../styles/App.scss';
+import Desktop from './Desktop';
 
 function App() {
 
-  const [touchStartTime, setTouchStartTime] = useState(0);
   const [circlePosition, setCirclePosition] = useState([]);
 
-  const handleTouchStart = e => {
-    setTouchStartTime(new Date().getTime());
+  const handleCirclePosition = e => {
     const touchesCount = e.targetTouches.length;
     const positions = [];
     for (let i = 0; i < touchesCount; i++) {
@@ -16,17 +15,16 @@ function App() {
     }
     setCirclePosition(positions);
   }
-
   return (
     <div
       className="app"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchStart}
-      onTouchMove={handleTouchStart}
+      onTouchStart={handleCirclePosition}
+      onTouchEnd={handleCirclePosition}
+      onTouchMove={handleCirclePosition}
     >
-      <Circles
+      {("ontouchstart" in document.documentElement) ? <Circles
         circles={circlePosition}
-      />
+      /> : <Desktop />}
     </div>
   );
 }
