@@ -1,0 +1,79 @@
+@import '_variables.scss';
+
+.circles-field {
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+}
+
+.circle {
+    position: absolute;
+    user-select: none;
+    color: $main_bg;
+    font-size: 7em;
+    font-weight: 900;
+    width: $cir_size;
+    height: $cir_size;
+    transform: translate(calc(#{$cir_size}/-2),calc(#{$cir_size}/-2));
+    background-image:radial-gradient(hsla(100,100,60,.7), hsla(150,100,60,.7));
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: cir_pulse 1s linear infinite;
+
+    &__border {
+      width: calc(#{$cir_size+50px});
+      height: calc(#{$cir_size+50px});
+      border: 10px solid hsla(100,100,60,.7);
+      border-left: 10px solid transparent;
+      border-radius: 50%;
+      background-clip: padding-box;
+      padding: calc(#{$cir_size/1.5});
+      animation: cir_rotate 1.5s linear infinite;
+
+      &.winner {
+        animation: cir-border_winner 1.5s linear forwards;
+      }
+    }
+
+    &__number {
+      position: absolute;
+    }
+  }
+
+@keyframes cir_pulse {
+    50% {transform: translate(calc(#{$cir_size}/-2),calc(#{$cir_size}/-2)) scale(.9)}
+    100% {transform: translate(calc(#{$cir_size}/-2),calc(#{$cir_size}/-2))}
+  }
+  
+  @keyframes cir_rotate {
+    100%{transform: rotate(360deg);}
+  }
+  
+  @keyframes cir_winner {
+    80% {
+      width: $cir_winner_size;
+      height: $cir_winner_size;
+      transform: translate(calc(#{$cir_winner_size}/-2),calc(#{$cir_winner_size}/-2));
+      left: 50%;
+      top: 50%;
+      font-size: 24em;
+    }
+    100% {
+      width: $cir_winner_size;
+      height: $cir_winner_size;
+      transform: translate(calc(#{$cir_winner_size}/-2),calc(#{$cir_winner_size}/-2));
+      left: 50%;
+      top: 50%;
+      font-size: 24em;
+    }
+  }
+  
+  @keyframes cir-border_winner {
+    100% {
+    border-width: 250vh;
+    }
+  }
