@@ -9,7 +9,7 @@ function Circles() {
     const [winnerCircle, setWinnerCircle] = useState(0);
     const [winnerId, setWinnerId] = useState(0);
 
-    const handleCirclePosition = e => {
+    const handleCirclesUpdate = e => {
         const touchesCount = e.targetTouches.length;
         const positions = [];
         for (let i = 0; i < touchesCount; i++) {
@@ -42,9 +42,9 @@ function Circles() {
     }, [circles, playerChoosed, winnerCircle])
     return (
         <div className="circles-field"
-            onTouchStart={handleCirclePosition}
-            onTouchEnd={handleCirclePosition}
-            onTouchMove={handleCirclePosition}>
+            onTouchStart={handleCirclesUpdate}
+            onTouchEnd={handleCirclesUpdate}
+            onTouchMove={handleCirclesUpdate}>
             {
                 playerChoosed
                     ? <GenerateCircles circles={circles} />
