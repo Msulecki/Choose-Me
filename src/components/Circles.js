@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import GenerateCircles from './GenerateCircles';
-import WinnerCircle from './WinnerCircle';
+import GenerateCircles from "./GenerateCircles";
+import WinnerCircle from "./WinnerCircle";
 import "../styles/Circles.scss";
 
 function Circles() {
@@ -13,7 +13,7 @@ function Circles() {
         const touchesCount = e.targetTouches.length;
         const positions = [];
         for (let i = 0; i < touchesCount; i++) {
-            positions.push(e.targetTouches[i])
+            positions.push(e.targetTouches[i]);
         }
         setCircles(positions);
     }
@@ -39,14 +39,15 @@ function Circles() {
             setWinnerId(winner);
             setWinnerCircle(circles[winner]);
         }
-    }, [circles, playerChoosed, winnerCircle])
+    }, [circles, playerChoosed, winnerCircle]);
+
     return (
         <div className="circles-field"
             onTouchStart={handleCirclesUpdate}
             onTouchEnd={handleCirclesUpdate}
             onTouchMove={handleCirclesUpdate}>
             {
-                playerChoosed
+                !playerChoosed
                     ? <GenerateCircles circles={circles} />
                     : <WinnerCircle winnerCircle={winnerCircle} winnerId={winnerId} />
             }
