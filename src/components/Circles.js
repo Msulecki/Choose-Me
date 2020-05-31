@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import GenerateCircles from "./GenerateCircles";
 import WinnerCircle from "./WinnerCircle";
+import Info from "./Info";
 import "../styles/Circles.scss";
 
 function Circles() {
+
     const [circles, setCircles] = useState([]);
     const [playerChoosed, setPlayerChoosed] = useState(false);
     const [winnerCircle, setWinnerCircle] = useState(0);
@@ -51,7 +53,7 @@ function Circles() {
                     ? <GenerateCircles circles={circles} />
                     : <WinnerCircle winnerCircle={winnerCircle} winnerId={winnerId} />
             }
-            < div className="app__count" > {playerChoosed ? `Player ${winnerId + 1} won.` : circles.length}</div >
+            <Info playerChoosed={playerChoosed} winner={winnerId + 1} circlesCount={circles.length} />
         </div>
     );
 }
